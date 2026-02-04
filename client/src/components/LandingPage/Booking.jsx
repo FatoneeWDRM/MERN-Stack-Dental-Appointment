@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import doctorImage from '../../assets/doctor.png';
+import doctorBooking from '../../assets/doctor-booking.png';
 import clinicBg from '../../assets/clinic-bg.png';
 
 const Booking = () => {
@@ -78,12 +78,12 @@ const Booking = () => {
                         whileInView={{ x: 0, opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="w-full lg:w-5/12 flex justify-center lg:justify-start relative h-full pl-10"
+                        className="w-full lg:w-5/12 flex justify-center lg:justify-start relative h-full pl-4 lg:ml-[-40px]"
                     >
                         <img
-                            src={doctorImage}
+                            src={doctorBooking}
                             alt="Doctor"
-                            className="h-[600px] object-cover object-top drop-shadow-2xl"
+                            className="h-[750px] object-cover object-top drop-shadow-2xl translate-y-10"
                         />
                     </motion.div>
 

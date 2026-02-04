@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import doctorImage from '../../assets/doctor.png';
+// Import all doctor images
+import doctorTeam1 from '../../assets/doctor-team-1.png'; // Chiro/Spine
+import doctorStanding from '../../assets/doctor-standing.png'; // Sports Med
+import doctorTeam2 from '../../assets/doctor-team-2.png'; // Pediatrics
+import doctorTeam3 from '../../assets/doctor-team-3.png'; // Rehab
+import doctorBooking from '../../assets/doctor-booking.png'; // Ortho/Trauma
+import doctor from '../../assets/doctor.png'; // Chiro
 
 // Mock Data for Reviews
 const reviewsData = [
@@ -12,7 +18,8 @@ const reviewsData = [
         date: '12 ม.ค. 2024',
         comment: 'ปวดคอ บ่า ไหล่ มานานหลายปี ทานยาก็แค่บรรเทา พอมาจัดกระดูกที่นี่ อาการดีขึ้นชัดเจนตั้งแต่ครั้งแรก คุณหมอให้คำแนะนำดีมากครับ ตอนนี้ทำงานได้ไม่ต้องทรมานแล้ว',
         tags: ['ปวดเรื้อรัง', 'คลายกล้ามเนื้อ'],
-        avatar_color: 'bg-blue-100 text-blue-600'
+        avatar_color: 'bg-blue-100 text-blue-600',
+        doctorImage: doctorTeam1 // นพ. อเวจี (Chiropractic)
     },
     {
         id: 2,
@@ -22,7 +29,8 @@ const reviewsData = [
         date: '5 ก.พ. 2024',
         comment: 'เจ็บเข่าจากการวิ่ง ลองพักแล้วไม่หาย มาปรึกษาหมอฟาฏอนี ตรวจละเอียดมาก เจอสาเหตุจริง ๆ รักษาตรงจุด กลับไปซ้อมวิ่งได้ไวขึ้น ประทับใจมากครับ',
         tags: ['บาดเจ็บจากการกีฬา', 'ฟื้นฟูไว'],
-        avatar_color: 'bg-green-100 text-green-600'
+        avatar_color: 'bg-green-100 text-green-600',
+        doctorImage: doctorStanding // นพ. สมชาย (Sports Medicine)
     },
     {
         id: 3,
@@ -32,7 +40,8 @@ const reviewsData = [
         date: '28 ธ.ค. 2023',
         comment: 'หนูมีปัญหากระดูกสันหลังคด บุคลิกภาพไม่ดี คุณแม่พามาจัดกระดูกที่นี่ ตอนนี้หลังตรงขึ้น มั่นใจขึ้นเยอะเลยค่ะ คุณหมอใจดี มือเบา ไม่เจ็บเลย',
         tags: ['กระดูกสันหลังคด', 'ปรับบุคลิกภาพ'],
-        avatar_color: 'bg-pink-100 text-pink-600'
+        avatar_color: 'bg-pink-100 text-pink-600',
+        doctorImage: doctorTeam2 // พญ. สุภาวดี (Pediatrics / Child)
     },
     {
         id: 4,
@@ -42,7 +51,8 @@ const reviewsData = [
         date: '10 มี.ค. 2024',
         comment: 'ผ่าตัดหลังมาแล้วยังตึง ๆ เคลื่อนไหวลำบาก มาทำกายภาพฟื้นฟูที่นี่ นักกายภาพดูแลดี เครื่องมือทันสมัย ตอนนี้เดินคล่องขึ้นมาก ใช้ชีวิตมีความสุขครับ',
         tags: ['ฟื้นฟูหลังผ่าตัด', 'กายภาพบำบัด'],
-        avatar_color: 'bg-orange-100 text-orange-600'
+        avatar_color: 'bg-orange-100 text-orange-600',
+        doctorImage: doctorTeam3 // นักกายภาพ ประดิษฐ์ (Rehabilitation)
     },
     {
         id: 5,
@@ -52,7 +62,8 @@ const reviewsData = [
         date: '15 ก.พ. 2024',
         comment: 'เป็นไมเกรนบ่อยมากจนกระทบงาน หมอบอกว่าเกิดจากคอบ่าเกร็งไปกดทับเส้นประสาท พอรักษาแล้วอาการปวดหัวลดลงแทบไม่ต้องกินยาเลยค่ะ',
         tags: ['ไมเกรน', 'นอนไม่หลับ'],
-        avatar_color: 'bg-purple-100 text-purple-600'
+        avatar_color: 'bg-purple-100 text-purple-600',
+        doctorImage: doctor // นพ. ต่อ (Chiropractic)
     },
     {
         id: 6,
@@ -62,7 +73,8 @@ const reviewsData = [
         date: '2 ม.ค. 2024',
         comment: 'ปวดหลังตามประสาคนแก่ ลูกหลานพามาหาหมอ หมอน่ารัก พูดเพราะ รักษาแล้วเดินเหินสะดวกขึ้น ไม่ต้องให้ลูกหลานคอยพยุงตลอด ขอบคุณคุณหมอมากจ้ะ',
         tags: ['ผู้สูงอายุ', 'ข้อเสื่อม'],
-        avatar_color: 'bg-teal-100 text-teal-600'
+        avatar_color: 'bg-teal-100 text-teal-600',
+        doctorImage: doctorBooking // นพ. เก่งกาจ (Orthopedics)
     }
 ];
 
@@ -175,13 +187,23 @@ const Reviews = () => {
                             </AnimatePresence>
 
                             {/* Doctor Background Faded */}
-                            <div className="absolute right-[-50px] bottom-[-50px] w-64 md:w-96 pointer-events-none opacity-20 grayscale hover:grayscale-0 transition-all duration-700">
-                                <img
-                                    src={doctorImage}
-                                    alt="Doctor"
-                                    className="w-full object-contain"
-                                />
-                            </div>
+                            {/* Doctor Background Faded */}
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={activeReview.doctorImage}
+                                    initial={{ opacity: 0, x: 20 }}
+                                    animate={{ opacity: 0.2, x: 0 }}
+                                    exit={{ opacity: 0, x: -20 }}
+                                    transition={{ duration: 0.5 }}
+                                    className="absolute right-[-50px] bottom-[-50px] w-64 md:w-96 pointer-events-none grayscale hover:grayscale-0 transition-all duration-700"
+                                >
+                                    <img
+                                        src={activeReview.doctorImage}
+                                        alt="Doctor"
+                                        className="w-full object-contain"
+                                    />
+                                </motion.div>
+                            </AnimatePresence>
 
                             {/* Decoration Circle */}
                             <motion.div
