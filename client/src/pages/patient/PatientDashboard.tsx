@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import API from '../../api';
-import { useAuth } from '../../context/AuthContext';
 import PatientProfileForm from '../../components/PatientProfileForm';
 import BookAppointmentForm from '../../components/BookAppointmentForm';
 import { Appointment } from '../../types';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
@@ -47,15 +46,6 @@ const Sidebar = () => {
                         >
                             <span className="mr-3">📊</span>
                             Dashboard
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink
-                            to="/dashboard/appointments"
-                            className={({ isActive }) => `flex items-center px-6 py-3 text-sm font-medium transition-colors ${isActive ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 border-r-4 border-blue-600 dark:border-blue-400' : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100'}`}
-                        >
-                            <span className="mr-3">📅</span>
-                            Appointments
                         </NavLink>
                     </li>
                 </ul>
