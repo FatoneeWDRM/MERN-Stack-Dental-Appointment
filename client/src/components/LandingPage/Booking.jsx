@@ -65,7 +65,7 @@ const Booking = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
-                className="text-4xl font-bold text-white text-center mb-16 relative z-10 drop-shadow-md"
+                className="text-3xl md:text-4xl font-bold text-white text-center mb-10 md:mb-16 relative z-10 drop-shadow-md"
             >
                 จองคิวออนไลน์
             </motion.h2>
@@ -93,7 +93,7 @@ const Booking = () => {
                         whileInView={{ x: 0, opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.2 }}
-                        className="w-full lg:w-5/12 pb-20 pr-10"
+                        className="w-full lg:w-5/12 pb-10 lg:pb-20 px-4 lg:pr-10 lg:pl-0"
                     >
                         <div className="bg-[#654321] p-6 rounded-3xl shadow-2xl relative max-w-[480px] mx-auto border-t-8 border-l-8 border-[#543516] transition-transform hover:scale-[1.01] duration-300">
                             {/* White Paper */}

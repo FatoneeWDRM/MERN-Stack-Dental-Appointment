@@ -5,7 +5,7 @@ import doctorFooter from '../../assets/doctor-footer.png';
 
 const Footer = () => {
     return (
-        <footer id="contact" className="relative h-[500px]">
+        <footer id="contact" className="relative h-auto py-10 lg:py-0 lg:h-[500px]">
             {/* Background */}
             <div className="absolute inset-0 overflow-hidden">
                 <img
@@ -26,10 +26,10 @@ const Footer = () => {
                         transition={{ duration: 0.8 }}
                         className="flex-1 flex flex-col items-center justify-center text-center py-10 z-20"
                     >
-                        <h2 className="text-3xl md:text-5xl font-medium text-white mb-2 drop-shadow-md">
+                        <h2 className="text-2xl md:text-5xl font-medium text-white mb-2 drop-shadow-md">
                             สนใจปรึกษาการจัดกระดูก
                         </h2>
-                        <h3 className="text-3xl md:text-5xl font-medium text-white mb-10 drop-shadow-md">
+                        <h3 className="text-2xl md:text-5xl font-medium text-white mb-8 md:mb-10 drop-shadow-md">
                             ติดต่อเรา
                         </h3>
 

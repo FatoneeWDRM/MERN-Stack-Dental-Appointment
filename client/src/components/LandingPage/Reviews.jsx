@@ -27,7 +27,7 @@ const reviewsData = [
         reviewer: 'คุณภาคิน (นักวิ่งมาราธอน)',
         rating: 5,
         date: '5 ก.พ. 2024',
-        comment: 'เจ็บเข่าจากการวิ่ง ลองพักแล้วไม่หาย มาปรึกษาหมอฟาฏอนี ตรวจละเอียดมาก เจอสาเหตุจริง ๆ รักษาตรงจุด กลับไปซ้อมวิ่งได้ไวขึ้น ประทับใจมากครับ',
+        comment: 'เจ็บเข่าจากการวิ่ง ลองพักแล้วไม่หาย มาปรึกษาหมอต่อ ตรวจละเอียดมาก เจอสาเหตุจริง ๆ รักษาตรงจุด กลับไปซ้อมวิ่งได้ไวขึ้น ประทับใจมากครับ',
         tags: ['บาดเจ็บจากการกีฬา', 'ฟื้นฟูไว'],
         avatar_color: 'bg-green-100 text-green-600',
         doctorImage: doctorStanding // นพ. สมชาย (Sports Medicine)
@@ -82,8 +82,22 @@ const Reviews = () => {
     const [activeReview, setActiveReview] = useState(reviewsData[0]);
 
     return (
-        <section id="reviews" className="relative py-24 bg-gradient-to-b from-gray-50 to-gray-200 overflow-hidden">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <section id="reviews" className="relative py-24 bg-gradient-to-b from-white to-slate-50 overflow-hidden">
+            {/* Ambient Background Blobs */}
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                <motion.div
+                    animate={{ x: [0, 50, 0], y: [0, -30, 0] }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute top-20 -left-20 w-[600px] h-[600px] bg-teal-100/30 rounded-full blur-3xl opacity-60"
+                />
+                <motion.div
+                    animate={{ x: [0, -30, 0], y: [0, 40, 0] }}
+                    transition={{ duration: 25, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+                    className="absolute bottom-20 -right-20 w-[600px] h-[600px] bg-blue-100/30 rounded-full blur-3xl opacity-60"
+                />
+            </div>
+
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -95,10 +109,10 @@ const Reviews = () => {
                     <p className="text-gray-500">Real Reviews from Our Patients</p>
                 </motion.div>
 
-                <div className="flex flex-col lg:flex-row h-full min-h-[500px] gap-8">
-                    {/* Left Sidebar Menu */}
-                    <div className="w-full lg:w-1/3 space-y-3 z-10 flex flex-col">
-                        <h3 className="text-lg font-semibold text-gray-700 mb-2 px-2">เลือกประเภทการรักษา</h3>
+                <div className="flex flex-col lg:flex-row h-full min-h-[auto] lg:min-h-[500px] gap-6 md:gap-8">
+                    {/* Left Sidebar Menu (Horizontal Scroll on Mobile) */}
+                    <div className="w-full lg:w-1/3 z-10 flex flex-row lg:flex-col overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 gap-3 md:gap-3 snap-x no-scrollbar">
+                        <h3 className="text-lg font-semibold text-gray-700 mb-2 px-2 hidden lg:block">เลือกประเภทการรักษา</h3>
                         {reviewsData.map((review, i) => (
                             <motion.div
                                 key={review.id}
@@ -107,9 +121,9 @@ const Reviews = () => {
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.1 }}
                                 onClick={() => setActiveReview(review)}
-                                className={`p-4 rounded-xl border-2 cursor-pointer transition-all flex items-center justify-between group
+                                className={`p-4 rounded-xl border-2 cursor-pointer transition-all flex items-center justify-between group min-w-[260px] md:min-w-[300px] lg:min-w-0 snap-center
                                     ${activeReview.id === review.id
-                                        ? 'bg-white border-teal-500 shadow-lg scale-105'
+                                        ? 'bg-white border-teal-500 shadow-lg scale-100 lg:scale-105'
                                         : 'bg-white/40 border-transparent hover:bg-white/80 hover:border-teal-200'
                                     }`}
                             >
@@ -139,7 +153,7 @@ const Reviews = () => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.5 }}
-                            className="bg-white/90 backdrop-blur-xl rounded-3xl h-full p-8 md:p-12 shadow-2xl border border-white flex flex-col justify-center relative overflow-hidden"
+                            className="bg-white/80 backdrop-blur-xl rounded-3xl h-full p-6 md:p-12 shadow-2xl shadow-teal-100/20 border border-white/50 flex flex-col justify-center relative overflow-hidden"
                         >
 
                             {/* Review Content */}
@@ -195,7 +209,7 @@ const Reviews = () => {
                                     animate={{ opacity: 0.2, x: 0 }}
                                     exit={{ opacity: 0, x: -20 }}
                                     transition={{ duration: 0.5 }}
-                                    className="absolute right-[-50px] bottom-[-50px] w-64 md:w-96 pointer-events-none grayscale hover:grayscale-0 transition-all duration-700"
+                                    className="absolute right-[-20px] bottom-[-20px] md:right-[-50px] md:bottom-[-50px] w-48 md:w-96 pointer-events-none grayscale hover:grayscale-0 transition-all duration-700 opacity-20 md:opacity-100"
                                 >
                                     <img
                                         src={activeReview.doctorImage}

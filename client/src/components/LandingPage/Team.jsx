@@ -58,10 +58,10 @@ const Team = () => {
                     className="text-center mb-16"
                 >
                     <h2 className="text-sm font-bold text-teal-500 uppercase tracking-widest mb-2">Our Specialists</h2>
-                    <h3 className="text-4xl font-bold text-slate-900">ทีมแพทย์ผู้เชี่ยวชาญ</h3>
+                    <h3 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-600">ทีมแพทย์ผู้เชี่ยวชาญ</h3>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-center">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8 justify-center">
                     {team.map((member, idx) => (
                         <motion.div
                             key={idx}
@@ -71,16 +71,16 @@ const Team = () => {
                             transition={{ delay: idx * 0.2, duration: 0.5 }}
                             className="group relative"
                         >
-                            <div className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-slate-100">
-                                <div className="h-80 bg-slate-100 relative overflow-hidden flex items-end justify-center">
-                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            <div className="bg-white rounded-3xl overflow-hidden shadow-lg shadow-gray-100 hover:shadow-2xl hover:shadow-teal-100/50 transition-all duration-300 transform hover:-translate-y-2 border border-slate-100 hover:border-teal-200">
+                                <div className="h-80 bg-gradient-to-b from-teal-50 to-white relative overflow-hidden flex items-end justify-center">
+                                    <div className="absolute inset-0 bg-gradient-to-t from-teal-900/40 to-transparent z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                     <img
                                         src={member.image}
                                         alt={member.name}
                                         className="h-full w-auto object-cover object-top transform group-hover:scale-110 transition-transform duration-700"
                                     />
                                 </div>
-                                <div className="p-6 text-center relative z-20 bg-white">
+                                <div className="p-4 md:p-6 text-center relative z-20 bg-white">
                                     <h4 className="text-xl font-bold text-slate-800 mb-1">{member.name}</h4>
                                     <p className="text-teal-600 font-medium text-sm mb-4">{member.role}</p>
                                     <div className="flex justify-center flex-wrap gap-2 text-xs text-gray-400">
