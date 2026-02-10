@@ -105,14 +105,14 @@ const Reviews = () => {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-12"
                 >
-                    <h2 className="text-4xl font-bold text-gray-800 mb-4">เสียงตอบรับจากผู้ใช้บริการ</h2>
-                    <p className="text-gray-500">Real Reviews from Our Patients</p>
+                    <h2 className="text-4xl font-bold text-slate-800 mb-4">เสียงตอบรับจากผู้ใช้บริการ</h2>
+                    <p className="text-slate-600">Real Reviews from Our Patients</p>
                 </motion.div>
 
                 <div className="flex flex-col lg:flex-row h-full min-h-[auto] lg:min-h-[500px] gap-6 md:gap-8">
                     {/* Left Sidebar Menu (Horizontal Scroll on Mobile) */}
                     <div className="w-full lg:w-1/3 z-10 flex flex-row lg:flex-col overflow-x-auto lg:overflow-visible pb-4 lg:pb-0 gap-3 md:gap-3 snap-x no-scrollbar">
-                        <h3 className="text-lg font-semibold text-gray-700 mb-2 px-2 hidden lg:block">เลือกประเภทการรักษา</h3>
+                        <h3 className="text-lg font-semibold text-slate-800 mb-2 px-2 hidden lg:block">เลือกประเภทการรักษา</h3>
                         {reviewsData.map((review, i) => (
                             <motion.div
                                 key={review.id}
@@ -128,10 +128,10 @@ const Reviews = () => {
                                     }`}
                             >
                                 <div>
-                                    <div className={`font-bold ${activeReview.id === review.id ? 'text-teal-700' : 'text-gray-600'}`}>
+                                    <div className={`font-bold ${activeReview.id === review.id ? 'text-teal-700' : 'text-slate-700'}`}>
                                         {review.program}
                                     </div>
-                                    <div className="text-xs text-gray-400 mt-1">{review.reviewer}</div>
+                                    <div className="text-xs text-slate-500 mt-1">{review.reviewer}</div>
                                 </div>
                                 {activeReview.id === review.id && (
                                     <motion.span
@@ -171,24 +171,24 @@ const Reviews = () => {
                                             {activeReview.reviewer.charAt(1)}
                                         </div>
                                         <div>
-                                            <h3 className="text-2xl font-bold text-gray-800">{activeReview.reviewer}</h3>
+                                            <h3 className="text-2xl font-bold text-slate-800">{activeReview.reviewer}</h3>
                                             <div className="flex items-center text-yellow-400 gap-1 mt-1">
                                                 {'★'.repeat(activeReview.rating)}
-                                                <span className="text-gray-400 text-sm ml-2 font-normal">({activeReview.date})</span>
+                                                <span className="text-slate-500 text-sm ml-2 font-normal">({activeReview.date})</span>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div className="mb-8">
-                                        <div className="text-5xl text-teal-200 font-serif absolute -top-4 -left-2">"</div>
-                                        <p className="text-gray-600 text-lg leading-relaxed relative z-10 pl-6 border-l-4 border-teal-200 italic">
+                                        <div className="text-5xl text-teal-300 font-serif absolute -top-4 -left-2">"</div>
+                                        <p className="text-slate-700 text-lg leading-relaxed relative z-10 pl-6 border-l-4 border-teal-400 italic">
                                             {activeReview.comment}
                                         </p>
                                     </div>
 
                                     <div className="flex flex-wrap gap-2 mb-8">
                                         {activeReview.tags.map((tag, idx) => (
-                                            <span key={idx} className="px-3 py-1 bg-gray-100 text-gray-600 text-xs rounded-full font-medium">
+                                            <span key={idx} className="px-3 py-1 bg-teal-100 text-teal-700 text-xs rounded-full font-medium">
                                                 #{tag}
                                             </span>
                                         ))}
