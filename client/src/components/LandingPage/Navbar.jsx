@@ -3,18 +3,55 @@ import { motion, AnimatePresence } from 'framer-motion';
 import skeletonXray from '../../assets/skeleton-xray.png';
 
 const Navbar = () => {
-    const [isOpen, setIsOpen] = React.useState(false);
+    const [isOpen, setIsOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    React.useEffect(() => {
+        const handleScroll = () => {
+            setIsScrolled(window.scrollY > 20);
+        };
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     // Close menu when clicking a link
     const handleLinkClick = () => setIsOpen(false);
 
     return (
-        <div className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
-            <nav className="bg-white/80 backdrop-blur-md rounded-[2rem] shadow-xl px-6 py-3 max-w-6xl w-full relative border border-white/50">
-                <div className="flex justify-between items-center">
+        <motion.div
+            layout
+            initial={false}
+            animate={{
+                y: isScrolled ? 24 : 0,
+                paddingLeft: isScrolled ? 16 : 0,
+                paddingRight: isScrolled ? 16 : 0,
+            }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="fixed left-0 right-0 z-50 flex justify-center"
+        >
+            <motion.nav
+                layout
+                initial={false}
+                animate={{
+                    maxWidth: isScrolled ? '1100px' : '1280px', // max-w-6xl to max-w-7xl approx
+                    borderRadius: isScrolled ? '2.5rem' : '0rem',
+                    backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.7)' : 'rgba(255, 255, 255, 0)',
+                    backdropFilter: isScrolled ? 'blur(12px)' : 'blur(0px)',
+                    boxShadow: isScrolled
+                        ? '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
+                        : '0 0px 0px 0px rgba(0, 0, 0, 0)',
+                    borderBottomWidth: isScrolled ? '1px' : '0px',
+                    borderColor: isScrolled ? 'rgba(255, 255, 255, 0.4)' : 'rgba(255, 255, 255, 0)',
+                }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="relative flex items-center justify-center w-full overflow-hidden"
+            >
+                <div className={`flex justify-between items-center w-full transition-all duration-500 ${isScrolled ? 'px-8 py-3' : 'px-4 py-6'
+                    }`}>
                     <div className="flex items-center space-x-3">
                         {/* Logo with spine icon */}
-                        <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center overflow-hidden bg-gray-50 flex-shrink-0">
+                        <div className={`w-10 h-10 rounded-full border flex items-center justify-center overflow-hidden bg-white/10 backdrop-blur-sm flex-shrink-0 transition-colors duration-500 ${isScrolled ? 'border-gray-200' : 'border-white/30'
+                            }`}>
                             <img
                                 src={skeletonXray}
                                 alt="JKD Logo"
@@ -22,8 +59,10 @@ const Navbar = () => {
                             />
                         </div>
                         <div className="leading-tight">
-                            <span className="block text-lg font-bold text-gray-900 tracking-wide">JKD</span>
-                            <span className="block text-[10px] text-gray-500 tracking-[0.2em] font-medium uppercase">CLINIC</span>
+                            <span className={`block text-lg font-bold tracking-wide transition-colors duration-500 ${isScrolled ? 'text-gray-900' : 'text-white'
+                                }`}>JKD</span>
+                            <span className={`block text-[10px] tracking-[0.2em] font-medium uppercase transition-colors duration-500 ${isScrolled ? 'text-gray-500' : 'text-white/70'
+                                }`}>CLINIC</span>
                         </div>
                     </div>
 
@@ -33,7 +72,10 @@ const Navbar = () => {
                             <a
                                 key={item}
                                 href={`#${item.toLowerCase()}`}
-                                className="text-gray-600 hover:text-teal-600 font-medium text-sm tracking-wide transition"
+                                className={`font-medium text-sm tracking-wide transition-all duration-300 ${isScrolled
+                                    ? 'text-gray-600 hover:text-teal-600'
+                                    : 'text-white/90 hover:text-white'
+                                    }`}
                             >
                                 {item}
                             </a>
@@ -43,7 +85,8 @@ const Navbar = () => {
                     {/* Mobile Menu Button */}
                     <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className="md:hidden text-gray-600 hover:text-teal-600 focus:outline-none p-2"
+                        className={`md:hidden focus:outline-none p-2 transition-colors duration-500 ${isScrolled ? 'text-gray-600' : 'text-white'
+                            }`}
                         aria-label="Toggle menu"
                     >
                         <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -56,7 +99,6 @@ const Navbar = () => {
                     </button>
                 </div>
 
-                {/* Mobile Menu Dropdown */}
                 {/* Mobile Menu Dropdown */}
                 <AnimatePresence>
                     {isOpen && (
@@ -80,8 +122,8 @@ const Navbar = () => {
                         </motion.div>
                     )}
                 </AnimatePresence>
-            </nav>
-        </div>
+            </motion.nav>
+        </motion.div>
     );
 };
 
