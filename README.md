@@ -1,38 +1,38 @@
-# Healthcare Clinic Management System
+# JKD Clinic Management System
 
 ## Overview
-A comprehensive, full-stack Clinic Management System built with the MERN stack (MongoDB, Express, React, Node.js). This application facilitates the management of patients, doctors, and appointments with Role-Based Access Control (RBAC).
+A comprehensive, full-stack Clinic Management System tailored for **JKD Clinic**, a leading Chiropractic and Physical Therapy center. Built with the MERN stack (MongoDB, Express, React, Node.js), this application facilitates the seamless management of patients, physical therapists, and appointment schedules, ensuring a premium healthcare experience.
 
 **Role:** Full-Stack Developer  
-**Status:** Developing 
+**Status:** In Development / MVP Phase
 
-## Features
+## Key Features
 
-### 🔐 Authentication & Authorization
-- **JWT-based Auth**: Secure login and registration for Patients, Doctors, and Staff.
-- **RBAC**: Middleware to protect routes and ensure only authorized roles can access specific data.
-- **Password Hashing**: Uses `bcryptjs` for security.
+### 🏥 Services & Rebranding
+- **Specialized Care**: Tailored for Chiropractic (Bone Adjustment) and Physical Therapy (Office Syndrome, Sport Injury).
+- **Premium UI**: Modern, clean interface with a "Medical Glassmorphism" design system.
 
-### 🏥 Patient Management
-- **Profile Management**: Patients can update their personal and medical details.
-- **Appointment History**: View past and upcoming appointments.
+### 🔐 Authentication & Security
+- **Role-Based Access**: Dedicated login portals for **Patients** and **Doctors** with strict role verification.
+- **Secure Auth**: JWT-based session management with protected routes.
 
-### 👨‍⚕️ Doctor Management
-- **Profile**: Doctors can set their specializations and consultation fees.
-- **Availability**: View appointments scheduled for them.
+### 💻 Dashboards
+- **Patient Portal**:
+  - View **Upcoming Appointments**.
+  - Access **Medical History** and past treatments.
+  - Quick access to **Booking** new sessions.
+- **Doctor Dashboard**:
+  - **Overview Stats**: Real-time view of total appointments, daily schedule, and pending requests.
+  - **Appointment Management**: Approve, Cancel, or Mark appointments as Completed.
+  - **Patient Management**: Access patient details and contact info.
 
 ### 📅 Appointment System
-- **Booking Engine**: Prevents double-booking for doctors at the same time slot.
-- **Status Workflow**: Track appointments from `Booked` -> `Confirmed` -> `Completed` -> `Cancelled`.
-
-### 💻 Dashboard
-- **Role-specific Views**:
-  - **Patients**: Book appointments, update profile.
-  - **Doctors**: View schedule.
-  - **Staff/Admin**: Overview of system activity.
+- **Real-time Availability**: Checks doctor schedules to prevent double-booking.
+- **Status Workflow**: `Booked` (Pending) -> `Confirmed` -> `Completed` -> `Cancelled`.
+- **Digital Slips**: Generates appointment confirmation details.
 
 ## Tech Stack
-- **Frontend**: React (Vite), Context API, CSS Modules.
+- **Frontend**: React (Vite), Tailwind CSS, Framer Motion, React Router v6.
 - **Backend**: Node.js, Express.js.
 - **Database**: MongoDB (Mongoose).
 - **Tools**: Postman, Git, NPM.
@@ -58,7 +58,11 @@ A comprehensive, full-stack Clinic Management System built with the MERN stack (
    MONGO_URI=mongodb://localhost:27017/clinic_db
    JWT_SECRET=your_super_secret_key
    ```
-4. Start the server:
+4. Seed the database (Optional - for demo data):
+   ```bash
+   node seed.cjs
+   ```
+5. Start the server:
    ```bash
    npm run dev
    ```
@@ -83,14 +87,14 @@ A comprehensive, full-stack Clinic Management System built with the MERN stack (
 | :--- | :--- | :--- | :--- |
 | POST | /api/auth/register | Register new user | Public |
 | POST | /api/auth/login | Login user | Public |
-| GET | /api/doctors | List all doctors | Public |
+| GET | /api/appointments | Get appointments (Role specific) | Private |
 | POST | /api/appointments | Book appointment | Patient |
-| GET | /api/appointments | Get user appointments | Private |
+| PUT | /api/appointments/:id | Update status (Confirm/Cancel) | Doctor |
 
 ## Future Improvements
+- [ ] Line/Messenger Integration for customer support.
 - [ ] Email notifications for appointment confirmation.
-- [ ] Admin panel for user management (Ban/Delete).
-- [ ] File upload for medical reports.
+- [ ] File upload for X-Ray and medical reports.
 
 ## License
 MIT

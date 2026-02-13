@@ -1,5 +1,6 @@
 const User = require('../models/User');
 const generateToken = require('../utils/generateToken');
+const jwt = require('jsonwebtoken');
 
 // @desc    Register a new user
 // @route   POST /api/auth/register
@@ -23,12 +24,22 @@ const registerUser = async (req, res, next) => {
         });
 
         if (user) {
+            const { accessToken, refreshToken } = generateToken(user._id);
+
+            // Send Refresh Token in HttpOnly Cookie
+            res.cookie('jwt', refreshToken, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV !== 'development', // Use secure cookies in production
+                sameSite: 'strict', // Prevent CSRF attacks
+                maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+            });
+
             res.status(201).json({
                 _id: user._id,
                 name: user.name,
                 email: user.email,
                 role: user.role,
-                token: generateToken(user._id),
+                token: accessToken, // Client stores this in memory
             });
         } else {
             res.status(400);
@@ -49,12 +60,22 @@ const authUser = async (req, res, next) => {
         const user = await User.findOne({ email });
 
         if (user && (await user.matchPassword(password))) {
+            const { accessToken, refreshToken } = generateToken(user._id);
+
+            // Send Refresh Token in HttpOnly Cookie
+            res.cookie('jwt', refreshToken, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV !== 'development',
+                sameSite: 'strict',
+                maxAge: 7 * 24 * 60 * 60 * 1000,
+            });
+
             res.json({
                 _id: user._id,
                 name: user.name,
                 email: user.email,
                 role: user.role,
-                token: generateToken(user._id),
+                token: accessToken,
             });
         } else {
             res.status(401);
@@ -63,6 +84,52 @@ const authUser = async (req, res, next) => {
     } catch (error) {
         next(error);
     }
+};
+
+// @desc    Refresh access token
+// @route   GET /api/auth/refresh
+// @access  Public (Cookie based)
+const refreshToken = async (req, res, next) => {
+    try {
+        const cookies = req.cookies;
+
+        if (!cookies?.jwt) {
+            res.status(401);
+            throw new Error('Unauthorized - No Refresh Token');
+        }
+
+        const refreshToken = cookies.jwt;
+
+        const decoded = jwt.verify(refreshToken, process.env.JWT_SECRET);
+        const user = await User.findById(decoded.id).select('-password');
+
+        if (!user) {
+            res.status(401);
+            throw new Error('Unauthorized - User not found');
+        }
+
+        const { accessToken } = generateToken(user._id);
+
+        res.json({ token: accessToken });
+    } catch (error) {
+        res.status(403); // Forbidden
+        throw new Error('Forbidden - Token Expired or Invalid');
+    }
+};
+
+// @desc    Logout user / Clear cookie
+// @route   POST /api/auth/logout
+// @access  Public
+const logoutUser = (req, res) => {
+    const cookies = req.cookies;
+    if (!cookies?.jwt) return res.sendStatus(204); // No content
+
+    res.clearCookie('jwt', {
+        httpOnly: true,
+        sameSite: 'strict',
+        secure: process.env.NODE_ENV !== 'development',
+    });
+    res.json({ message: 'Cookie cleared' });
 };
 
 // @desc    Get user profile
@@ -88,4 +155,4 @@ const getUserProfile = async (req, res, next) => {
     }
 };
 
-module.exports = { registerUser, authUser, getUserProfile };
+module.exports = { registerUser, authUser, refreshToken, logoutUser, getUserProfile };

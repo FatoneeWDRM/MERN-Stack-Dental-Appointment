@@ -34,7 +34,33 @@ const bookAppointment = async (req, res, next) => {
 
         if (existingAppointment) {
             res.status(400);
-            throw new Error('Doctor is not available at this time');
+            throw new Error('Doctor is not available at this time (Already Booked)');
+        }
+
+        // Validate against Doctor's Schedule
+        const queryDate = new Date(date);
+        const dayOfWeek = queryDate.toLocaleDateString('en-US', { weekday: 'long' });
+        const schedule = doctor.schedules.find(s => s.day === dayOfWeek);
+
+        if (!schedule || !schedule.isAvailable) {
+            res.status(400);
+            throw new Error(`Doctor is not available on ${dayOfWeek}`);
+        }
+
+        // Check if time is within start/end range
+        // Convert "HH:MM" to minutes for comparison
+        const [reqHour, reqMinute] = time.split(':').map(Number);
+        const reqTimeSrc = reqHour * 60 + reqMinute;
+
+        const [startHour, startMinute] = schedule.startTime.split(':').map(Number);
+        const startTimeSrc = startHour * 60 + startMinute;
+
+        const [endHour, endMinute] = schedule.endTime.split(':').map(Number);
+        const endTimeSrc = endHour * 60 + endMinute;
+
+        if (reqTimeSrc < startTimeSrc || reqTimeSrc >= endTimeSrc) {
+            res.status(400);
+            throw new Error(`Selected time ${time} is outside of doctor's working hours (${schedule.startTime} - ${schedule.endTime})`);
         }
 
         const appointment = await Appointment.create({

@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
 
 const connectDB = require('./config/db');
 const { errorHandler } = require('./middleware/errorMiddleware');
@@ -20,7 +21,11 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cookieParser());
+app.use(cors({
+    origin: 'http://localhost:5173', // Frontend URL
+    credentials: true, // Allow cookies
+}));
 app.use(helmet());
 app.use(morgan('common'));
 

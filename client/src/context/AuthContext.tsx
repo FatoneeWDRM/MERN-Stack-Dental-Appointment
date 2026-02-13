@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useContext, ReactNode } from 'react';
-import API from '../api';
+import API, { setAccessToken } from '../api';
 import { User, AuthContextType } from '../types';
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -8,37 +8,56 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
 
+    // Check for existing session on mount (Silent Refresh)
     useEffect(() => {
-        const userInfo = localStorage.getItem('userInfo');
-        if (userInfo) {
+        const checkAuth = async () => {
             try {
-                setUser(JSON.parse(userInfo));
+                // Try to refresh token using the HttpOnly cookie
+                const { data } = await API.get('/auth/refresh');
+
+                // If successful, set the new access token in memory
+                setAccessToken(data.token);
+
+                // Fetch user profile
+                const profileRes = await API.get('/auth/profile');
+                setUser(profileRes.data);
             } catch (error) {
-                console.error("Failed to parse user info:", error);
-                localStorage.removeItem('userInfo');
+                // If refresh fails, user is not logged in
+                setUser(null);
+            } finally {
+                setLoading(false);
             }
-        }
-        setLoading(false);
+        };
+
+        checkAuth();
     }, []);
 
     const login = async (email: string, password: string) => {
         const { data } = await API.post('/auth/login', { email, password });
-        localStorage.setItem('userInfo', JSON.stringify(data));
-        localStorage.setItem('token', data.token);
-        setUser(data);
+
+        // Backend now sets HttpOnly cookie for Refresh Token
+        // Frontend only stores Access Token in memory
+        setAccessToken(data.token);
+
+        setUser(data); // data includes user info
+        return data;
     };
 
     const register = async (name: string, email: string, password: string, role: string) => {
         const { data } = await API.post('/auth/register', { name, email, password, role });
-        localStorage.setItem('userInfo', JSON.stringify(data));
-        localStorage.setItem('token', data.token);
+
+        setAccessToken(data.token);
         setUser(data);
         return data;
     };
 
-    const logout = () => {
-        localStorage.removeItem('userInfo');
-        localStorage.removeItem('token');
+    const logout = async () => {
+        try {
+            await API.post('/auth/logout'); // Clear cookie on server
+        } catch (error) {
+            console.error("Logout failed", error);
+        }
+        setAccessToken(null);
         setUser(null);
         window.location.href = '/login';
     };

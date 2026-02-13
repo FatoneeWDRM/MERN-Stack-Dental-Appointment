@@ -10,7 +10,7 @@ const Sidebar = () => {
     return (
         <div className="w-64 bg-white dark:bg-gray-900 h-screen border-r border-gray-200 dark:border-gray-700 flex flex-col fixed left-0 top-0 transition-colors">
             <div className="h-16 flex items-center justify-between px-4 border-b border-gray-200 dark:border-gray-700">
-                <h1 className="text-xl font-bold text-blue-600 dark:text-blue-400 tracking-wide">Smart Smile Dental</h1>
+                <h1 className="text-xl font-bold text-blue-600 dark:text-blue-400 tracking-wide">JKD Clinic</h1>
                 <button
                     onClick={toggleTheme}
                     className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
@@ -48,6 +48,29 @@ const Sidebar = () => {
                             Dashboard
                         </NavLink>
                     </li>
+
+                    {user?.role === 'patient' && (
+                        <>
+                            <li>
+                                <NavLink
+                                    to="/dashboard/book-appointment"
+                                    className={({ isActive }) => `flex items-center px-6 py-3 text-sm font-medium transition-colors ${isActive ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 border-r-4 border-blue-600 dark:border-blue-400' : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100'}`}
+                                >
+                                    <span className="mr-3">📅</span>
+                                    Book Appointment
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/dashboard/appointments"
+                                    className={({ isActive }) => `flex items-center px-6 py-3 text-sm font-medium transition-colors ${isActive ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 border-r-4 border-blue-600 dark:border-blue-400' : 'text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-gray-100'}`}
+                                >
+                                    <span className="mr-3">📋</span>
+                                    My Appointments
+                                </NavLink>
+                            </li>
+                        </>
+                    )}
                 </ul>
             </nav>
 

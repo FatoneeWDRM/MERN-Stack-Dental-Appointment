@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import skeletonXray from '../../assets/skeleton-xray.png';
 
 const Navbar = () => {
@@ -79,6 +80,15 @@ const Navbar = () => {
                                 {item}
                             </a>
                         ))}
+                        <Link
+                            to="/login"
+                            className={`px-5 py-2 rounded-full font-semibold text-sm transition-all duration-300 shadow-md transform hover:scale-105 ${isScrolled
+                                    ? 'bg-teal-600 text-white hover:bg-teal-700'
+                                    : 'bg-white text-teal-900 hover:bg-gray-100'
+                                }`}
+                        >
+                            Sign In
+                        </Link>
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -118,6 +128,13 @@ const Navbar = () => {
                                     {item}
                                 </a>
                             ))}
+                            <Link
+                                to="/login"
+                                onClick={handleLinkClick}
+                                className="text-center bg-teal-600 hover:bg-teal-700 text-white font-bold text-base tracking-wide transition py-3 px-4 rounded-xl block shadow-md"
+                            >
+                                Sign In
+                            </Link>
                         </motion.div>
                     )}
                 </AnimatePresence>

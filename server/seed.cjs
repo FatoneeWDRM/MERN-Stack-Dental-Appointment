@@ -55,27 +55,28 @@ const importData = async () => {
         // Create Doctor Profile
         await Doctor.create({
             user: doctorUser._id,
-            specialization: 'General Practitioner',
-            qualifications: 'MD',
+            specialization: 'Chiropractor & Physical Therapist',
+            qualifications: 'B.Sc. Physical Therapy, Certified Chiropractor',
             experience: 10,
-            feesPerConsultation: 500,
+            feesPerConsultation: 1500,
             schedules: [
-                { day: 'Monday', startTime: '09:00', endTime: '17:00' },
-                { day: 'Tuesday', startTime: '09:00', endTime: '17:00' },
-                { day: 'Wednesday', startTime: '09:00', endTime: '12:00' },
-                { day: 'Thursday', startTime: '09:00', endTime: '17:00' },
-                { day: 'Friday', startTime: '09:00', endTime: '15:00' }
+                { day: 'Monday', startTime: '09:00', endTime: '19:00' },
+                { day: 'Tuesday', startTime: '09:00', endTime: '19:00' },
+                { day: 'Wednesday', startTime: '09:00', endTime: '19:00' },
+                { day: 'Thursday', startTime: '09:00', endTime: '19:00' },
+                { day: 'Friday', startTime: '09:00', endTime: '19:00' },
+                { day: 'Saturday', startTime: '10:00', endTime: '17:00' }
             ]
         });
 
         // Create Patient Profile
         await Patient.create({
             user: patientUser._id,
-            phone: '123-456-7890',
-            address: '123 Main St',
+            phone: '081-234-5678',
+            address: '123 Bangkok, Thailand',
             gender: 'Female',
-            dateOfBirth: new Date('1990-01-01'),
-            medicalHistory: 'None',
+            dateOfBirth: new Date('1995-05-15'),
+            medicalHistory: 'Office Syndrome, Migraine',
         });
 
         // Create Mock Appointments
@@ -92,8 +93,8 @@ const importData = async () => {
                 doctor: doctorUser._id,
                 patient: patientUser._id,
                 date: tomorrow,
-                time: '09:00',
-                reason: 'Regular Checkup',
+                time: '10:00',
+                reason: 'Office Syndrome Therapy',
                 status: 'booked'
             },
             {
@@ -101,23 +102,23 @@ const importData = async () => {
                 patient: patientUser._id,
                 date: tomorrow,
                 time: '14:30',
-                reason: 'Toothache',
+                reason: 'Bone Adjustment (Chiropractic)',
                 status: 'booked'
             },
             {
                 doctor: doctorUser._id,
                 patient: patientUser._id,
                 date: dayAfter,
-                time: '10:00',
-                reason: 'Cleaning',
+                time: '11:00',
+                reason: 'Ultrasound Therapy',
                 status: 'confirmed'
             },
             {
                 doctor: doctorUser._id,
                 patient: patientUser._id,
                 date: new Date(today.getTime() - 86400000), // Yesterday
-                time: '11:00',
-                reason: 'Follow up',
+                time: '16:00',
+                reason: 'Initial Consultation',
                 status: 'completed'
             }
         ]);

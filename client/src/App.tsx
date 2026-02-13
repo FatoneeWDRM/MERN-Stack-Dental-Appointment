@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import AppointmentsPage from './pages/AppointmentsPage';
+import BookAppointment from './pages/patient/BookAppointment';
 import LandingPage from './pages/LandingPage';
 
 const PrivateRoute = ({ children }: { children: ReactNode }) => {
@@ -73,6 +74,7 @@ function App() {
             }>
               <Route index element={<Dashboard />} />
               <Route path="appointments" element={<AppointmentsPage />} />
+              <Route path="book-appointment" element={<BookAppointment />} />
               {/* Add other protected routes here */}
             </Route>
 
