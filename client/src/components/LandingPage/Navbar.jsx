@@ -22,9 +22,9 @@ const Navbar = () => {
             layout
             initial={false}
             animate={{
-                y: isScrolled ? 24 : 0,
-                paddingLeft: isScrolled ? 16 : 0,
-                paddingRight: isScrolled ? 16 : 0,
+                y: 24,
+                paddingLeft: 16,
+                paddingRight: 16,
             }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="fixed left-0 right-0 z-50 flex justify-center"
@@ -33,8 +33,8 @@ const Navbar = () => {
                 layout
                 initial={false}
                 animate={{
-                    maxWidth: isScrolled ? '1100px' : '1280px', // max-w-6xl to max-w-7xl approx
-                    borderRadius: isScrolled ? '2.5rem' : '0rem',
+                    maxWidth: '1200px',
+                    borderRadius: '2.5rem',
                     backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.7)' : 'rgba(255, 255, 255, 0)',
                     backdropFilter: isScrolled ? 'blur(12px)' : 'blur(0px)',
                     boxShadow: isScrolled
@@ -46,8 +46,7 @@ const Navbar = () => {
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 className="relative flex items-center justify-center w-full overflow-hidden"
             >
-                <div className={`flex justify-between items-center w-full transition-all duration-500 ${isScrolled ? 'px-8 py-3' : 'px-4 py-6'
-                    }`}>
+                <div className={`flex justify-between items-center w-full transition-all duration-500 px-8 py-3`}>
                     <div className="flex items-center space-x-3">
                         {/* Logo with spine icon */}
                         <div className={`w-10 h-10 rounded-full border flex items-center justify-center overflow-hidden bg-white/10 backdrop-blur-sm flex-shrink-0 transition-colors duration-500 ${isScrolled ? 'border-gray-200' : 'border-white/30'
