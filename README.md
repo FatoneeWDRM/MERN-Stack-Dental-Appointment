@@ -4,7 +4,7 @@
 A comprehensive, full-stack Clinic Management System built with the MERN stack (MongoDB, Express, React, Node.js). This application facilitates the management of patients, doctors, and appointments with Role-Based Access Control (RBAC).
 
 **Role:** Full-Stack Developer  
-**Status:** Completed  
+**Status:** Developing 
 
 ## Features
 
