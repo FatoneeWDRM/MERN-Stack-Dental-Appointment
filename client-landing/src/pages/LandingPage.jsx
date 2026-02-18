@@ -7,10 +7,16 @@ import Reviews from '../components/LandingPage/Reviews';
 import Booking from '../components/LandingPage/Booking';
 import Footer from '../components/LandingPage/Footer';
 import FAB from '../components/LandingPage/FAB';
+import SEO from '../components/SEO';
 
 const LandingPage = () => {
     return (
         <div className="min-h-screen bg-slate-50 font-sans text-gray-900">
+            <SEO
+                title="JKD Clinic - Premium Dental Care"
+                description="Experience world-class dental care at JKD Clinic. We offer a wide range of services including cosmetic dentistry, orthodontics, and more."
+                keywords="dentist, dental clinic, teeth whitening, implants, bangkok"
+            />
             <Navbar />
             <main>
                 <Hero />
