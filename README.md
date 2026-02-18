@@ -7,7 +7,6 @@ A comprehensive, full-stack Clinic Management System tailored for **JKD Clinic**
 **Status:** In Development / MVP Phase
 
 ## Key Features
-
 ### 🏥 Services & Rebranding
 - **Specialized Care**: Tailored for Chiropractic (Bone Adjustment) and Physical Therapy (Office Syndrome, Sport Injury).
 - **Premium UI**: Modern, clean interface with a "Medical Glassmorphism" design system.
