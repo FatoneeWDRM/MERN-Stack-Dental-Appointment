@@ -13,9 +13,9 @@ const LandingPage = () => {
     return (
         <div className="min-h-screen bg-slate-50 font-sans text-gray-900">
             <SEO
-                title="JKD Clinic - Premium Dental Care"
-                description="Experience world-class dental care at JKD Clinic. We offer a wide range of services including cosmetic dentistry, orthodontics, and more."
-                keywords="dentist, dental clinic, teeth whitening, implants, bangkok"
+                title="BetterBone Clinic - คลินิกจัดกระดูก"
+                description="สัมผัสประสบการณ์การดูแลกระดูกและข้อระดับพรีเมียมที่ BetterBone Clinic โดยนพ.ต่อ ผู้เชี่ยวชาญด้านการจัดกระดูกด้วยประสบการณ์กว่า 16 ปี"
+                keywords="จัดกระดูก, ปวดหลัง, ออฟฟิศซินโดรม, คลินิกจัดกระดูก, betterbone clinic, นพ.ต่อ"
             />
             <Navbar />
             <main>

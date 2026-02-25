@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import skeletonXray from '../../assets/skeleton-xray.png';
+// import skeletonXray from '../../assets/skeleton-xray.png'; // No longer needed for logo
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
 
-    React.useEffect(() => {
+    useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 20);
         };
@@ -48,19 +48,28 @@ const Navbar = () => {
             >
                 <div className={`flex justify-between items-center w-full transition-all duration-500 px-8 py-3`}>
                     <div className="flex items-center space-x-3">
-                        {/* Logo with spine icon */}
-                        <div className={`w-10 h-10 rounded-full border flex items-center justify-center overflow-hidden bg-white/10 backdrop-blur-sm flex-shrink-0 transition-colors duration-500 ${isScrolled ? 'border-gray-200' : 'border-white/30'
+                        {/* Custom SVG Spine/Bone Logo */}
+                        <div className={`w-10 h-10 rounded-xl border flex items-center justify-center overflow-hidden bg-white/10 backdrop-blur-sm flex-shrink-0 transition-all duration-500 group-hover:scale-110 ${isScrolled ? 'border-teal-100 bg-teal-50/50' : 'border-white/30'
                             }`}>
-                            <img
-                                src={skeletonXray}
-                                alt="JKD Logo"
-                                className="w-8 h-8 object-cover opacity-80"
-                            />
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                className={`w-7 h-7 transition-colors duration-500 ${isScrolled ? 'text-teal-600' : 'text-teal-300'
+                                    }`}
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M12 3V5M12 19V21M12 7C14.2091 7 16 8.79086 16 11C16 13.2091 14.2091 15 12 15C9.79086 15 8 13.2091 8 11C8 8.79086 9.79086 7 12 7ZM12 7V3M12 21V15M7 11H3M21 11H17M18.364 17.364L15.5355 14.5355M8.46447 7.46447L5.63604 4.63604M18.364 4.63604L15.5355 7.46447M8.46447 14.5355L5.63604 17.364"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                />
+                            </svg>
                         </div>
-                        <div className="leading-tight">
-                            <span className={`block text-lg font-bold tracking-wide transition-colors duration-500 ${isScrolled ? 'text-gray-900' : 'text-white'
-                                }`}>JKD</span>
-                            <span className={`block text-[10px] tracking-[0.2em] font-medium uppercase transition-colors duration-500 ${isScrolled ? 'text-gray-500' : 'text-white/70'
+                        <div className="leading-tight group">
+                            <span className={`block text-lg font-bold tracking-tight transition-colors duration-500 ${isScrolled ? 'text-slate-900 group-hover:text-teal-600' : 'text-white'
+                                }`}>BETTERBONE</span>
+                            <span className={`block text-[10px] tracking-[0.3em] font-semibold uppercase transition-colors duration-500 ${isScrolled ? 'text-teal-600/70' : 'text-teal-300'
                                 }`}>CLINIC</span>
                         </div>
                     </div>

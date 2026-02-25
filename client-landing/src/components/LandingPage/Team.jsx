@@ -5,7 +5,6 @@ import doctorTeam2 from '../../assets/doctor-team-2.png'; // Female
 import doctorTeam3 from '../../assets/doctor-team-3.png'; // Male arms crossed
 import doctorStanding from '../../assets/doctor-standing.png';
 import doctorBooking from '../../assets/doctor-booking.png';
-import doctor from '../../assets/doctor.png';
 
 const Team = () => {
     const team = [
@@ -39,12 +38,6 @@ const Team = () => {
             image: doctorBooking,
             specialties: ["Orthopedic Surgery", "Trauma"]
         },
-        {
-            name: "นพ. ต่อ",
-            role: "ผู้เชี่ยวชาญด้านกระดูกสันหลัง",
-            image: doctor,
-            specialties: ["Chiropractic", "Orthopedics"]
-        }
     ];
 
     return (

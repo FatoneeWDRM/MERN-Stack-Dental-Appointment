@@ -88,7 +88,7 @@ const Services = () => {
                     {/* Large background text */}
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
                         <span className="text-[120px] md:text-[180px] font-black text-teal-50 tracking-wider">
-                            JKD
+                            BETTERBONE
                         </span>
                     </div>
 
@@ -97,7 +97,7 @@ const Services = () => {
                             Our Services
                         </span>
                         <h2 className="text-3xl md:text-5xl font-bold text-slate-800 mb-4">
-                            บริการของ <span className="text-teal-600">JKD CLINIC</span>
+                            บริการของ <span className="text-teal-600">BETTERBONE CLINIC</span>
                         </h2>
                         <p className="text-slate-500 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
                             แหล่งศูนย์แก้ปัญหาของเหล่าคนปวดร่างกายที่จะช่วยบรรเทาความเจ็บปวดให้แก่ทุกท่าน

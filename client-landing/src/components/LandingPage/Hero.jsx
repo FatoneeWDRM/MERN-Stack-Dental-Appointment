@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, animate } from 'framer-motion';
 import clinicBg from '../../assets/clinic-bg.png';
-import doctorImage from '../../assets/doctor.png';
+import doctorStanding from '../../assets/doctor-standing.png';
 
 const CountUp = ({ from = 0, to }) => {
     const nodeRef = useRef();
@@ -67,11 +67,17 @@ const Hero = () => {
                             initial={{ y: 30, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ duration: 0.6, delay: 0.4 }}
-                            className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-3 md:mb-6 drop-shadow-lg"
+                            className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-3 md:mb-6 drop-shadow-lg flex flex-col items-center lg:items-start"
                         >
-                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-200 to-emerald-400">JKD CLINIC</span>
-                            <br className="sm:hidden" />
-                            <span className="hidden sm:inline"> | </span>
+                            <div className="relative inline-block pb-2 mb-2">
+                                <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-200 to-emerald-400">BETTERBONE CLINIC</span>
+                                <motion.div
+                                    initial={{ width: 0 }}
+                                    animate={{ width: '100%' }}
+                                    transition={{ duration: 0.8, delay: 1 }}
+                                    className="absolute bottom-0 left-0 h-1 md:h-1.5 bg-gradient-to-r from-teal-400 to-emerald-500 rounded-full"
+                                />
+                            </div>
                             <span className="text-xl sm:text-3xl md:text-5xl lg:text-6xl">คลินิกจัดกระดูก</span>
                         </motion.h1>
                         <motion.p
@@ -80,7 +86,7 @@ const Hero = () => {
                             transition={{ duration: 0.6, delay: 0.6 }}
                             className="text-white/90 text-sm sm:text-base md:text-lg mb-6 md:mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed font-light drop-shadow-md"
                         >
-                            ด้วยประสบการณ์กว่า 16 ปี ที่นายแพทย์ต่อ มุ่งมั่นในการพัฒนาการบริการ
+                            ด้วยประสบการณ์กว่า 16 ปี ที่นายแพทย์บอล มุ่งมั่นในการพัฒนาการบริการ
                             และเครื่องมือที่ทันสมัย เพื่อผู้ใช้บริการจะได้รับประสบการณ์ที่ดีที่สุดกลับไป
                         </motion.p>
                         <motion.div
@@ -110,7 +116,7 @@ const Hero = () => {
                             initial={{ y: 50, opacity: 0 }}
                             animate={{ y: 0, opacity: 1 }}
                             transition={{ duration: 0.8, delay: 0.2 }}
-                            src={doctorImage}
+                            src={doctorStanding}
                             alt="Doctor"
                             className="h-[35vh] sm:h-[45vh] md:h-[55vh] lg:h-[75vh] object-contain object-bottom drop-shadow-2xl"
                         />

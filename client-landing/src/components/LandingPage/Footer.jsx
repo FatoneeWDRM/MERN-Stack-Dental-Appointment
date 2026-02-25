@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import clinicBg from '../../assets/clinic-bg.png';
-import doctorFooter from '../../assets/doctor-footer.png';
+import clinicBg from '../../assets/clinic-bg.png';;
+import doctorStanding from '../../assets/doctor-standing.png';
 
 const Footer = () => {
     return (
@@ -76,7 +76,7 @@ const Footer = () => {
                         className="hidden lg:block absolute bottom-[-115px] right-[-175px] w-[450px] h-[300%]"
                     >
                         <img
-                            src={doctorFooter}
+                            src={doctorStanding}
                             alt="Doctor"
                             className="h-full object-contain drop-shadow-2xl object-bottom"
                         />

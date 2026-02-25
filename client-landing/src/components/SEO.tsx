@@ -15,10 +15,10 @@ const SEO = ({
     description,
     keywords = 'clinic, doctor, health, medical, appointment',
     image = '/og-image.jpg', // Default image
-    url = 'https://jkd-clinic.pages.dev', // Replace with actual domain
+    url = 'https://betterbone-clinic.pages.dev', // Replace with actual domain
     type = 'website',
 }: SEOProps) => {
-    const siteTitle = 'JKD Clinic';
+    const siteTitle = 'BetterBone Clinic';
 
     return (
         <Helmet>

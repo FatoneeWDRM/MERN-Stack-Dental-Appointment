@@ -111,7 +111,7 @@ const Booking = () => {
 
                                 {/* Info */}
                                 <div className="text-center md:text-left">
-                                    <h3 className="text-2xl font-bold text-white mb-2">JKD CLINIC</h3>
+                                    <h3 className="text-2xl font-bold text-white mb-2">BETTERBONE CLINIC</h3>
                                     <p className="text-teal-100 text-sm mb-4">คลินิกจัดกระดูกและกายภาพบำบัด</p>
 
                                     <div className="space-y-3">

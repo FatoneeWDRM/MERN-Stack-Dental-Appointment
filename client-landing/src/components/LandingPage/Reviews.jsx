@@ -6,7 +6,6 @@ import doctorStanding from '../../assets/doctor-standing.png'; // Sports Med
 import doctorTeam2 from '../../assets/doctor-team-2.png'; // Pediatrics
 import doctorTeam3 from '../../assets/doctor-team-3.png'; // Rehab
 import doctorBooking from '../../assets/doctor-booking.png'; // Ortho/Trauma
-import doctor from '../../assets/doctor.png'; // Chiro
 
 // Mock Data for Reviews
 const reviewsData = [
@@ -63,7 +62,7 @@ const reviewsData = [
         comment: 'เป็นไมเกรนบ่อยมากจนกระทบงาน หมอบอกว่าเกิดจากคอบ่าเกร็งไปกดทับเส้นประสาท พอรักษาแล้วอาการปวดหัวลดลงแทบไม่ต้องกินยาเลยค่ะ',
         tags: ['ไมเกรน', 'นอนไม่หลับ'],
         avatar_color: 'bg-purple-100 text-purple-600',
-        doctorImage: doctor // นพ. ต่อ (Chiropractic)
+        doctorImage: doctorStanding
     },
     {
         id: 6,
